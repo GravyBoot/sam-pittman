@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Alex Morgan — Full-Stack Developer and Systems Engineer based in San Francisco." />
+    <title>Alex Morgan — Full-Stack Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+
+    <!-- ============================================================
+         SITE HEADER & PRIMARY NAVIGATION
+    ============================================================ -->
+    <header class="site-header" role="banner">
+      <div class="site-header__inner">
+        <a href="#about" class="site-header__logo" aria-label="Alex Morgan — back to top">AM</a>
+
+        <button
+          class="nav-toggle"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+        >
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+        </button>
+
+        <nav id="primary-nav" class="primary-nav" aria-label="Page sections">
+          <ul class="primary-nav__list" role="list">
+            <li><a href="#about"      class="nav-link" data-section="about">01 About</a></li>
+            <li><a href="#skills"     class="nav-link" data-section="skills">02 Skills</a></li>
+            <li><a href="#experience" class="nav-link" data-section="experience">03 Experience</a></li>
+            <li><a href="#projects"   class="nav-link" data-section="projects">04 Projects</a></li>
+            <li><a href="#contact"    class="nav-link" data-section="contact">05 Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+
+    <main id="main-content">
+
+      <!-- ============================================================
+           SECTION 01 — ABOUT
+      ============================================================ -->
+      <section id="about" class="section section--about" aria-labelledby="about-heading">
+        <div class="container">
+          <span class="section-label" aria-hidden="true">// 01</span>
+
+          <div class="about__hero">
+            <h1 id="about-heading" class="about__name">
+              <span class="about__name-first">Alex</span>
+              <span class="about__name-last">Morgan</span>
+            </h1>
+            <p class="about__title">Full-Stack Developer &amp; Systems Engineer</p>
+          </div>
+
+          <div class="about__body">
+            <p class="about__bio">
+              I build thoughtful, resilient software that scales. Over eight years I've taken
+              products from napkin sketch to production — leading small teams, owning
+              architecture decisions, and writing code I'm not embarrassed by a year later.
+              Currently open to senior individual-contributor and staff-level roles.
+            </p>
+
+            <ul class="about__meta" role="list">
+              <li class="about__meta-item">
+                <span class="meta-label">Location</span>
+                <span class="meta-value">San Francisco, CA</span>
+              </li>
+              <li class="about__meta-item">
+                <span class="meta-label">Available</span>
+                <span class="meta-value">Immediately</span>
+              </li>
+              <li class="about__meta-item">
+                <span class="meta-label">Preferred</span>
+                <span class="meta-value">Remote / Hybrid</span>
+              </li>
+            </ul>
+
+            <div class="about__cta-group">
+              <a href="#contact" class="btn btn--primary">Get in touch</a>
+              <a href="/alex-morgan-resume.pdf" class="btn btn--secondary" download>
+                Download CV
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ============================================================
+           SECTION 02 — SKILLS (filterable)
+      ============================================================ -->
+      <section id="skills" class="section section--skills" aria-labelledby="skills-heading">
+        <div class="container">
+          <span class="section-label" aria-hidden="true">// 02</span>
+          <h2 id="skills-heading" class="section-heading">Skills</h2>
+
+          <!-- Filter controls -->
+          <div class="skills-filters" role="group" aria-label="Filter skills by category">
+            <button
+              class="filter-btn filter-btn--active"
+              type="button"
+              data-filter="all"
+              aria-pressed="true"
+            >All</button>
+            <button class="filter-btn" type="button" data-filter="frontend"  aria-pressed="false">Frontend</button>
+            <button class="filter-btn" type="button" data-filter="backend"   aria-pressed="false">Backend</button>
+            <button class="filter-btn" type="button" data-filter="devops"    aria-pressed="false">DevOps</button>
+            <button class="filter-btn" type="button" data-filter="tooling"   aria-pressed="false">Tooling</button>
+          </div>
+
+          <!-- Skill list -->
+          <ul class="skills-list" id="skills-list" role="list" aria-live="polite" aria-label="Skills">
+
+            <li class="skill-item" data-category="frontend">
+              <span class="skill-name">React</span>
+              <span class="skill-category-tag">Frontend</span>
+            </li>
+            <li class="skill-item" data-category="frontend">
+              <span class="skill-name">TypeScript</span>
+              <span class="skill-category-tag">Frontend</span>
+            </li>
+            <li class="skill-item" data-category="frontend">
+              <span class="skill-name">Next.js</span>
+              <span class="skill-category-tag">Frontend</span>
+            </li>
+            <li class="skill-item" data-category="frontend">
+              <span class="skill-name">CSS / Sass</span>
+              <span class="skill-category-tag">Frontend</span>
+            </li>
+            <li class="skill-item" data-category="frontend">
+              <span class="skill-name">Web Accessibility (WCAG)</span>
+              <span class="skill-category-tag">Frontend</span>
+            </li>
+
+            <li class="skill-item" data-category="backend">
+              <span class="skill-name">Node.js</span>
+              <span class="skill-category-tag">Backend</span>
+            </li>
+            <li class="skill-item" data-category="backend">
+              <span class="skill-name">Python</span>
+              <span class="skill-category-tag">Backend</span>
+            </li>
+            <li class="skill-item" data-category="backend">
+              <span class="skill-name">PostgreSQL</span>
+              <span class="skill-category-tag">Backend</span>
+            </li>
+            <li class="skill-item" data-category="backend">
+              <span class="skill-name">GraphQL</span>
+              <span class="skill-category-tag">Backend</span>
+            </li>
+            <li class="skill-item" data-category="backend">
+              <span class="skill-name">REST API Design</span>
+              <span class="skill-category-tag">Backend</span>
+            </li>
+
+            <li class="skill-item" data-category="devops">
+              <span class="skill-name">Docker</span>
+              <span class="skill-category-tag">DevOps</span>
+            </li>
+            <li class="skill-item" data-category="devops">
+              <span class="skill-name">Kubernetes</span>
+              <span class="skill-category-tag">DevOps</span>
+            </li>
+            <li class="skill-item" data-category="devops">
+              <span class="skill-name">AWS (EC2, S3, Lambda)</span>
+              <span class="skill-category-tag">DevOps</span>
+            </li>
+            <li class="skill-item" data-category="devops">
+              <span class="skill-name">CI/CD Pipelines</span>
+              <span class="skill-category-tag">DevOps</span>
+            </li>
+
+            <li class="skill-item" data-category="tooling">
+              <span class="skill-name">Git &amp; GitHub</span>
+              <span class="skill-category-tag">Tooling</span>
+            </li>
+            <li class="skill-item" data-category="tooling">
+              <span class="skill-name">Webpack / Vite</span>
+              <span class="skill-category-tag">Tooling</span>
+            </li>
+            <li class="skill-item" data-category="tooling">
+              <span class="skill-name">Jest / Vitest</span>
+              <span class="skill-category-tag">Tooling</span>
+            </li>
+            <li class="skill-item" data-category="tooling">
+              <span class="skill-name">Figma</span>
+              <span class="skill-category-tag">Tooling</span>
+            </li>
+
+          </ul>
+
+          <!-- Empty state shown by JS when no results match -->
+          <p class="skills-empty" id="skills-empty" hidden aria-live="polite">
+            No skills found for this filter.
+          </p>
+
+        </div>
+      </section>
+
+
+      <!-- ============================================================
+           SECTION 03 — EXPERIENCE (expand / collapse)
+      ============================================================ -->
+      <section id="experience" class="section section--experience" aria-labelledby="experience-heading">
+        <div class="container">
+          <span class="section-label" aria-hidden="true">// 03</span>
+          <h2 id="experience-heading" class="section-heading">Experience</h2>
+
+          <ol class="experience-list" role="list">
+
+            <li class="experience-item">
+              <details class="experience-details" id="exp-1">
+                <summary class="experience-summary">
+                  <div class="experience-summary__main">
+                    <span class="experience-role">Senior Full-Stack Engineer</span>
+                    <span class="experience-company">Meridian Technologies</span>
+                  </div>
+                  <div class="experience-summary__meta">
+                    <time class="experience-dates" datetime="2021-03/2024-01">Mar 2021 — Jan 2024</time>
+                    <span class="experience-toggle-icon" aria-hidden="true"></span>
+                  </div>
+                </summary>
+                <div class="experience-body">
+                  <p>
+                    Led a cross-functional team of five to redesign the core billing platform,
+                    reducing monthly charge failures by 34% and cutting support tickets by half.
+                    Architected a micro-frontend migration from a monolithic Rails app to a
+                    React/Node stack without a single user-facing outage.
+                  </p>
+                  <ul class="experience-achievements" role="list">
+                    <li>Reduced API p99 latency from 1.4 s to 180 ms via query optimisation and Redis caching.</li>
+                    <li>Introduced end-to-end testing with Playwright; raised coverage from 12% to 74%.</li>
+                    <li>Mentored two junior engineers, both promoted within 18 months.</li>
+                  </ul>
+                  <ul class="experience-tags" role="list" aria-label="Technologies used">
+                    <li class="tag">React</li>
+                    <li class="tag">Node.js</li>
+                    <li class="tag">PostgreSQL</li>
+                    <li class="tag">Redis</li>
+                    <li class="tag">AWS</li>
+                  </ul>
+                </div>
+              </details>
+            </li>
+
+            <li class="experience-item">
+              <details class="experience-details" id="exp-2">
+                <summary class="experience-summary">
+                  <div class="experience-summary__main">
+                    <span class="experience-role">Full-Stack Developer</span>
+                    <span class="experience-company">Cobalt Labs</span>
+                  </div>
+                  <div class="experience-summary__meta">
+                    <time class="experience-dates" datetime="2018-07/2021-02">Jul 2018 — Feb 2021</time>
+                    <span class="experience-toggle-icon" aria-hidden="true"></span>
+                  </div>
+                </summary>
+                <div class="experience-body">
+                  <p>
+                    Joined as the fourth engineer at an early-stage SaaS startup building
+                    analytics tooling for e-commerce brands. Owned the frontend architecture
+                    and contributed heavily to the Python data pipeline.
+                  </p>
+                  <ul class="experience-achievements" role="list">
+                    <li>Built a real-time dashboard serving 3,000+ concurrent users with sub-second refresh.</li>
+                    <li>Designed and shipped a public REST API consumed by 60+ third-party integrations.</li>
+                    <li>Established the design-system foundations still in use today.</li>
+                  </ul>
+                  <ul class="experience-tags" role="list" aria-label="Technologies used">
+                    <li class="tag">TypeScript</li>
+                    <li class="tag">Python</li>
+                    <li class="tag">GraphQL</li>
+                    <li class="tag">Docker</li>
+                  </ul>
+                </div>
+              </details>
+            </li>
+
+            <li class="experience-item">
+              <details class="experience-details" id="exp-3">
+                <summary class="experience-summary">
+                  <div class="experience-summary__main">
+                    <span class="experience-role">Junior Developer</span>
+                    <span class="experience-company">Axiom Digital Agency</span>
+                  </div>
+                  <div class="experience-summary__meta">
+                    <time class="experience-dates" datetime="2016-09/2018-06">Sep 2016 — Jun 2018</time>
+                    <span class="experience-toggle-icon" aria-hidden="true"></span>
+                  </div>
+                </summary>
+                <div class="experience-body">
+                  <p>
+                    First professional role. Built and maintained websites for a portfolio of
+                    30+ clients spanning retail, hospitality, and media. Developed a strong
+                    grounding in performance optimisation and cross-browser compatibility.
+                  </p>
+                  <ul class="experience-achievements" role="list">
+                    <li>Delivered 12 client projects on time and within budget across two years.</li>
+                    <li>Reduced average page load time by 40% through asset optimisation and lazy loading.</li>
+                  </ul>
+                  <ul class="experience-tags" role="list" aria-label="Technologies used">
+                    <li class="tag">JavaScript</li>
+                    <li class="tag">PHP</li>
+                    <li class="tag">WordPress</li>
+                    <li class="tag">MySQL</li>
+                  </ul>
+                </div>
+              </details>
+            </li>
+
+          </ol>
+        </div>
+      </section>
+
+
+      <!-- ============================================================
+           SECTION 04 — PROJECTS
+      ============================================================ -->
+      <section id="projects" class="section section--projects" aria-labelledby="projects-heading">
+        <div class="container">
+          <span class="section-label" aria-hidden="true">// 04</span>
+          <h2 id="projects-heading" class="section-heading">Projects</h2>
+
+          <ul class="projects-grid" role="list">
+
+            <li class="project-card">
+              <article aria-labelledby="project-1-title">
+                <header class="project-card__header">
+                  <h3 id="project-1-title" class="project-card__title">Forager</h3>
+                  <span class="project-card__type">Open Source</span>
+                </header>
+                <p class="project-card__description">
+                  A lightweight, opinionated state-management library for React with
+                  zero dependencies and a 2 kB bundle. Designed to replace Redux for
+                  teams that don't need its complexity.
+                </p>
+                <ul class="project-card__tags" role="list" aria-label="Technologies">
+                  <li class="tag">React</li>
+                  <li class="tag">TypeScript</li>
+                  <li class="tag">Rollup</li>
+                </ul>
+                <footer class="project-card__footer">
+                  <a
+                    href="https://github.com/alexmorgan/forager"
+                    class="project-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="View Forager on GitHub (opens in new tab)"
+                  >GitHub →</a>
+                  <a
+                    href="https://forager.dev"
+                    class="project-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="View Forager live demo (opens in new tab)"
+                  >Live →</a>
+                </footer>
+              </article>
+            </li>
+
+            <li class="project-card">
+              <article aria-labelledby="project-2-title">
+                <header class="project-card__header">
+                  <h3 id="project-2-title" class="project-card__title">Plainlog</h3>
+                  <span class="project-card__type">Side Project</span>
+                </header>
+                <p class="project-card__description">
+                  A minimal, self-hosted structured logging service. Ingests logs via
+                  HTTP, stores them in SQLite, and surfaces them through a clean
+                  read-only web UI. Built for small teams who find Datadog overkill.
+                </p>
+                <ul class="project-card__tags" role="list" aria-label="Technologies">
+                  <li class="tag">Node.js</li>
+                  <li class="tag">SQLite</li>
+                  <li class="tag">Docker</li>
+                </ul>
+                <footer class="project-card__footer">
+                  <a
+                    href="https://github.com/alexmorgan/plainlog"
+                    class="project-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="View Plainlog on GitHub (opens in new tab)"
+                  >GitHub →</a>
+                </footer>
+              </article>
+            </li>
+
+            <li class="project-card">
+              <article aria-labelledby="project-3-title">
+                <header class="project-card__header">
+                  <h3 id="project-3-title" class="project-card__title">Cartograph</h3>
+                  <span class="project-card__type">Client Work</span>
+                </header>
+                <p class="project-card__description">
+                  An interactive data-visualisation dashboard for a logistics company,
+                  mapping real-time delivery routes across 14 cities. Built with
+                  MapLibre GL and a custom WebSocket event pipeline.
+                </p>
+                <ul class="project-card__tags" role="list" aria-label="Technologies">
+                  <li class="tag">MapLibre GL</li>
+                  <li class="tag">WebSockets</li>
+                  <li class="tag">Python</li>
+                </ul>
+                <footer class="project-card__footer">
+                  <a
+                    href="https://cartograph.example.com"
+                    class="project-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="View Cartograph case study (opens in new tab)"
+                  >Case Study →</a>
+                </footer>
+              </article>
+            </li>
+
+            <li class="project-card">
+              <article aria-labelledby="project-4-title">
+                <header class="project-card__header">
+                  <h3 id="project-4-title" class="project-card__title">Patchwork CLI</h3>
+                  <span class="project-card__type">Open Source</span>
+                </header>
+                <p class="project-card__description">
+                  A command-line tool for managing environment configuration across
+                  multiple deployment targets. Supports secret injection, environment
+                  diffing, and audit logs. Used by 200+ teams on GitHub.
+                </p>
+                <ul class="project-card__tags" role="list" aria-label="Technologies">
+                  <li class="tag">Node.js</li>
+                  <li class="tag">TypeScript</li>
+                  <li class="tag">AWS SSM</li>
+                </ul>
+                <footer class="project-card__footer">
+                  <a
+                    href="https://github.com/alexmorgan/patchwork-cli"
+                    class="project-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="View Patchwork CLI on GitHub (opens in new tab)"
+                  >GitHub →</a>
+                </footer>
+              </article>
+            </li>
+
+          </ul>
+        </div>
+      </section>
+
+
+      <!-- ============================================================
+           SECTION 05 — CONTACT
+      ============================================================ -->
+      <section id="contact" class="section section--contact" aria-labelledby="contact-heading">
+        <div class="container container--narrow">
+          <span class="section-label" aria-hidden="true">// 05</span>
+          <h2 id="contact-heading" class="section-heading">Get in Touch</h2>
+          <p class="contact-intro">
+            I'm currently available for new opportunities. Whether you have a role in mind
+            or just want to talk shop — my inbox is open.
+          </p>
+
+          <form
+            id="contact-form"
+            class="contact-form"
+            novalidate
+            aria-label="Contact form"
+          >
+            <div class="form-group" id="group-name">
+              <label class="form-label" for="field-name">
+                Name <span class="form-required" aria-hidden="true">*</span>
+              </label>
+              <input
+                class="form-input"
+                id="field-name"
+                name="name"
+                type="text"
+                autocomplete="name"
+                required
+                aria-required="true"
+                aria-describedby="error-name"
+                placeholder="Jane Smith"
+              />
+              <span class="form-error" id="error-name" role="alert" aria-live="polite"></span>
+            </div>
+
+            <div class="form-group" id="group-email">
+              <label class="form-label" for="field-email">
+                Email <span class="form-required" aria-hidden="true">*</span>
+              </label>
+              <input
+                class="form-input"
+                id="field-email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                required
+                aria-required="true"
+                aria-describedby="error-email"
+                placeholder="jane@example.com"
+              />
+              <span class="form-error" id="error-email" role="alert" aria-live="polite"></span>
+            </div>
+
+            <div class="form-group" id="group-subject">
+              <label class="form-label" for="field-subject">Subject</label>
+              <input
+                class="form-input"
+                id="field-subject"
+                name="subject"
+                type="text"
+                placeholder="Role enquiry / collaboration / hello"
+              />
+            </div>
+
+            <div class="form-group" id="group-message">
+              <label class="form-label" for="field-message">
+                Message <span class="form-required" aria-hidden="true">*</span>
+              </label>
+              <textarea
+                class="form-input form-textarea"
+                id="field-message"
+                name="message"
+                rows="5"
+                required
+                aria-required="true"
+                aria-describedby="error-message"
+                placeholder="Tell me what you're working on…"
+              ></textarea>
+              <span class="form-error" id="error-message" role="alert" aria-live="polite"></span>
+            </div>
+
+            <div class="form-actions">
+              <button class="btn btn--primary btn--submit" type="submit" id="submit-btn">
+                Send Message
+              </button>
+            </div>
+
+            <!-- Success state shown by JS after submit -->
+            <div
+              class="form-success"
+              id="form-success"
+              hidden
+              role="status"
+              aria-live="polite"
+            >
+              <span class="form-success__icon" aria-hidden="true">✓</span>
+              <p class="form-success__message">
+                Message sent — I'll be in touch within a couple of days.
+              </p>
+            </div>
+
+          </form>
+
+          <ul class="contact-links" role="list" aria-label="Other ways to reach me">
+            <li>
+              <a
+                href="mailto:alex@alexmorgan.dev"
+                class="contact-link"
+                aria-label="Send an email to alex@alexmorgan.dev"
+              >alex@alexmorgan.dev</a>
+            </li>
+            <li>
+              <a
+                href="https://github.com/alexmorgan"
+                class="contact-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Alex Morgan on GitHub (opens in new tab)"
+              >GitHub</a>
+            </li>
+            <li>
+              <a
+                href="https://linkedin.com/in/alexmorgan"
+                class="contact-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Alex Morgan on LinkedIn (opens in new tab)"
+              >LinkedIn</a>
+            </li>
+          </ul>
+
+        </div>
+      </section>
+
+    </main>
+
+
+    <!-- ============================================================
+         SITE FOOTER
+    ============================================================ -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="container">
+        <p class="site-footer__copy">
+          <span>© 2024 Alex Morgan.</span>
+          <span>Built with semantic HTML, CSS &amp; vanilla JS.</span>
+        </p>
+        <a href="#about" class="site-footer__back-to-top" aria-label="Back to top">↑ Top</a>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
