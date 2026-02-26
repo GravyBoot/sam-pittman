@@ -39,7 +39,6 @@
             <li><a href="#skills"     class="nav-link" data-section="skills">02 Skills</a></li>
             <li><a href="#experience" class="nav-link" data-section="experience">03 Experience</a></li>
             <li><a href="#projects"   class="nav-link" data-section="projects">04 Projects</a></li>
-            <li><a href="#contact"    class="nav-link" data-section="contact">05 Contact</a></li>
           </ul>
         </nav>
       </div>
@@ -61,6 +60,30 @@
               <span class="about__name-last">Pittman</span>
             </h1>
             <p class="about__title">Full-Stack Developer &amp; Systems Engineer</p>
+
+            <ul class="about__contact-links" role="list" aria-label="Contact links">
+              <li>
+                <button
+                  id="copy-email-btn"
+                  class="contact-link contact-link--email"
+                  type="button"
+                  data-email="sampittman12@icloud.com"
+                  aria-label="Copy email address sampittman12@icloud.com to clipboard"
+                >sampittman12@icloud.com
+                  <span class="copy-hint" aria-hidden="true">click to copy</span>
+                  <span class="copy-confirm" id="copy-confirm" aria-live="polite" hidden>Copied!</span>
+                </button>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/sampittman/"
+                  class="contact-link contact-link--external"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Samuel Pittman on LinkedIn (opens in new tab)"
+                >linkedin.com/in/sampittman →</a>
+              </li>
+            </ul>
           </div>
 
           <div class="about__body">
@@ -87,7 +110,6 @@
             </ul>
 
             <div class="about__cta-group">
-              <a href="#contact" class="btn btn--primary">Get in touch</a>
               <a href="/samuel-pittman-resume.pdf" class="btn btn--secondary" download>
                 Download CV
               </a>
@@ -473,44 +495,6 @@
         </div>
       </section>
 
-
-      <!-- ============================================================
-           SECTION 05 — CONTACT (simplified)
-      ============================================================ -->
-      <section id="contact" class="section section--contact" aria-labelledby="contact-heading">
-        <div class="container container--narrow">
-          <span class="section-label" aria-hidden="true">// 05</span>
-          <h2 id="contact-heading" class="section-heading">Get in Touch</h2>
-
-          <ul class="contact-links" role="list" aria-label="Contact links">
-            <li class="contact-links__item">
-              <span class="contact-links__label">Email</span>
-              <button
-                id="copy-email-btn"
-                class="contact-link contact-link--email"
-                type="button"
-                data-email="sampittman12@icloud.com"
-                aria-label="Copy email address sampittman12@icloud.com to clipboard"
-              >sampittman12@icloud.com
-                <span class="copy-hint" aria-hidden="true">click to copy</span>
-                <span class="copy-confirm" id="copy-confirm" aria-live="polite" hidden>Copied!</span>
-              </button>
-            </li>
-            <li class="contact-links__item">
-              <span class="contact-links__label">LinkedIn</span>
-              <a
-                href="https://www.linkedin.com/in/sampittman/"
-                class="contact-link contact-link--external"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Sam Pittman on LinkedIn (opens in new tab)"
-              >linkedin.com/in/sampittman →</a>
-            </li>
-          </ul>
-
-        </div>
-      </section>
-
     </main>
 
 
@@ -521,7 +505,4 @@
       <div class="container">
         <p class="site-footer__copy">
           <span>© 2024 Samuel Pittman.</span>
-          <span>Built with semantic HTML, CSS &amp; vanilla JS.</span>
-        </p>
-        <a href="#about" class="site-footer__back-to-top" aria-label="Back to top">↑ Top</a>
-      </div>
+          <span>Built with semantic HTML, CSS &amp; vanilla JS.</
