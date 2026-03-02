@@ -211,51 +211,72 @@ function initMobileNav() {
    ============================================================ */
 function initSkillFilter() {
   (function () {
-    var filterGroup = document.getElementById('skills-filters');
-    var skillsList  = document.getElementById('skills-list');
-    var emptyMsg    = document.getElementById('skills-empty');
+    (function () {
+      var filterGroup = document.getElementById('skills-filters');
+      var skillsList  = document.getElementById('skills-list');
+      var emptyMsg    = document.getElementById('skills-empty');
 
-    if (!filterGroup || !skillsList) return;
+      if (!filterGroup || !skillsList) return;
 
-    var buttons = filterGroup.querySelectorAll('button[data-filter]');
-    var items   = skillsList.querySelectorAll('li[data-category]');
+      var buttons = Array.prototype.slice.call(filterGroup.querySelectorAll('button[data-filter]'));
+      var items   = Array.prototype.slice.call(skillsList.querySelectorAll('li[data-category]'));
 
-    function applyFilter(activeValue) {
-      var visible = 0;
-      for (var i = 0; i < items.length; i++) {
-        if (activeValue === 'all' || items[i].getAttribute('data-category') === activeValue) {
-          items[i].style.display = '';
-          visible++;
-        } else {
-          items[i].style.display = 'none';
+      function getCategories(item) {
+        var raw = item.getAttribute('data-category') || '';
+        return raw.split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+      }
+
+      function matches(item, value) {
+        if (value === 'all') return true;
+        var cats = getCategories(item);
+        return cats.indexOf(value) !== -1;
+      }
+
+      function applyFilter(activeValue) {
+        var visible = 0;
+        for (var i = 0; i < items.length; i++) {
+          if (matches(items[i], activeValue)) {
+            items[i].style.display = '';
+            visible++;
+          } else {
+            items[i].style.display = 'none';
+          }
+        }
+        if (emptyMsg) {
+          emptyMsg.style.display = visible === 0 ? '' : 'none';
         }
       }
-      if (emptyMsg) {
-        emptyMsg.style.display = visible === 0 ? '' : 'none';
-      }
-    }
 
-    function setActiveButton(activeBtn) {
+      function setActiveButton(activeBtn) {
+        for (var i = 0; i < buttons.length; i++) {
+          var isActive = buttons[i] === activeBtn;
+          buttons[i].setAttribute('aria-pressed', isActive ? 'true' : 'false');
+          if (isActive) {
+            buttons[i].classList.add('filter-btn--active');
+          } else {
+            buttons[i].classList.remove('filter-btn--active');
+          }
+        }
+      }
+
       for (var i = 0; i < buttons.length; i++) {
-        var isActive = buttons[i] === activeBtn;
-        buttons[i].setAttribute('aria-pressed', isActive ? 'true' : 'false');
-        if (isActive) {
-          buttons[i].classList.add('filter-btn--active');
-        } else {
-          buttons[i].classList.remove('filter-btn--active');
-        }
+        (function (btn) {
+          btn.addEventListener('click', function () {
+            setActiveButton(btn);
+            applyFilter(btn.getAttribute('data-filter'));
+          });
+        })(buttons[i]);
       }
-    }
 
-    for (var i = 0; i < buttons.length; i++) {
-      (function (btn) {
-        btn.addEventListener('click', function () {
-          setActiveButton(btn);
-          applyFilter(btn.getAttribute('data-filter'));
-        });
-      })(buttons[i]);
-    }
-  })();
+      // Initialise: use any button already marked pressed, else use `all`, else first
+      var initialBtn = buttons.find(function (b) { return b.getAttribute('aria-pressed') === 'true'; }) ||
+                       buttons.find(function (b) { return b.getAttribute('data-filter') === 'all'; }) ||
+                       buttons[0];
+      if (initialBtn) {
+        setActiveButton(initialBtn);
+        applyFilter(initialBtn.getAttribute('data-filter') || 'all');
+      }
+    })();
 }
 
 
