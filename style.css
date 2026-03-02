@@ -804,6 +804,118 @@ button {
 
 
 /* ============================================================
+   SECTION 02 — SKILLS
+   ============================================================ */
+
+/* Filter button group */
+.skills-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-12);
+}
+
+.filter-btn {
+  padding: var(--space-3) var(--space-6);
+  border: 1.5px solid var(--color-border);
+  background-color: var(--color-surface);
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  border-radius: 24px;
+  cursor: pointer;
+  transition:
+    all var(--duration-base) var(--ease);
+}
+
+.filter-btn:hover {
+  border-color: var(--color-ink);
+  background-color: var(--color-bg-alt);
+}
+
+.filter-btn.is-active {
+  border-color: var(--color-ink);
+  background-color: var(--color-ink);
+  color: var(--color-surface);
+}
+
+/* Skills grid */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: var(--space-4);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Skill card and tag */
+.skill-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 70px;
+  padding: var(--space-4);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition:
+    all var(--duration-base) var(--ease);
+  opacity: 1;
+  visibility: visible;
+}
+
+.skill-card.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  height: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.skill-card:hover {
+  border-color: var(--color-ink);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-2px);
+}
+
+.skill-tag {
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--color-ink-secondary);
+  line-height: var(--leading-snug);
+}
+
+@media (max-width: 680px) {
+  .skills-filters {
+    gap: var(--space-3);
+    margin-bottom: var(--space-8);
+  }
+
+  .filter-btn {
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--text-xs);
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: var(--space-3);
+  }
+
+  .skill-card {
+    min-height: 60px;
+    padding: var(--space-3);
+  }
+
+  .skill-tag {
+    font-size: var(--text-xs);
+  }
+}
+
+
+/* ============================================================
    SECTION 04 — PROJECTS
    ============================================================ */
 .projects-grid {

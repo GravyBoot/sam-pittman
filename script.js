@@ -208,11 +208,57 @@ function initMobileNav() {
 
 /* ============================================================
    4. SKILL FILTER
-   TODO: Add new skills functionality here
+   Filters skills by category using client-side JavaScript.
+   Clicking a category button shows/hides relevant skills.
    ============================================================ */
 function initSkillFilter() {
-  // Placeholder for new skills code
-  // When skills HTML is ready, add the initialization logic here
+  const filterBtns = qsa('.filter-btn');
+  const skillCards = qsa('.skill-card');
+
+  if (!filterBtns.length || !skillCards.length) return;
+
+  /**
+   * Filter skills by category.
+   * Shows all cards matching the selected category,
+   * hides others.
+   */
+  function filterSkills(selectedCategory) {
+    skillCards.forEach(card => {
+      const category = card.getAttribute('data-category');
+      const shouldShow = selectedCategory === 'all' || category === selectedCategory;
+
+      if (shouldShow) {
+        card.classList.remove('is-hidden');
+      } else {
+        card.classList.add('is-hidden');
+      }
+    });
+  }
+
+  /**
+   * Update active button state.
+   * Only one filter button is active at a time.
+   */
+  function setActiveFilter(clickedBtn) {
+    filterBtns.forEach(btn => {
+      btn.classList.remove('is-active');
+      btn.setAttribute('aria-pressed', 'false');
+    });
+    clickedBtn.classList.add('is-active');
+    clickedBtn.setAttribute('aria-pressed', 'true');
+  }
+
+  // Attach click handlers to all filter buttons
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const category = btn.getAttribute('data-filter');
+      filterSkills(category);
+      setActiveFilter(btn);
+    });
+  });
+
+  // Initialize: show all skills by default
+  filterSkills('all');
 }
 
 
