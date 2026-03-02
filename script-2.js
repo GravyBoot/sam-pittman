@@ -215,17 +215,21 @@ function initMobileNav() {
    - keyboard: arrow key navigation within the filter group
    ============================================================ */
 function initSkillFilter() {
-  const filterGroup = qs('.skills-filters');
-  const filterBtns  = qsa('.filter-btn', filterGroup || document);
-  const skillItems  = qsa('.skill-item');
-  const emptyState  = qs('#skills-empty');
+  const filterGroup = document.querySelector('.skills-filters');
+  const skillsList  = document.querySelector('#skills-list');
+  const emptyState  = document.querySelector('#skills-empty');
+
+  if (!filterGroup || !skillsList) return;
+
+  const filterBtns = Array.from(filterGroup.querySelectorAll('.filter-btn'));
+  const skillItems = Array.from(skillsList.querySelectorAll('.skill-item'));
 
   if (!filterBtns.length || !skillItems.length) return;
 
   function applyFilter(activeFilter) {
     let visibleCount = 0;
 
-    skillItems.forEach(item => {
+    skillItems.forEach(function(item) {
       const category = item.getAttribute('data-category');
       const matches  = activeFilter === 'all' || category === activeFilter;
 
@@ -237,59 +241,56 @@ function initSkillFilter() {
       }
     });
 
-    // Show/hide empty state
     if (emptyState) {
       emptyState.hidden = visibleCount > 0;
     }
   }
 
   function setActiveBtn(activeBtn) {
-    filterBtns.forEach(btn => {
+    filterBtns.forEach(function(btn) {
       const isActive = btn === activeBtn;
       btn.setAttribute('aria-pressed', String(isActive));
       btn.classList.toggle('filter-btn--active', isActive);
     });
   }
 
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const filter = btn.getAttribute('data-filter');
-      setActiveBtn(btn);
-      applyFilter(filter);
-    });
+  // Use event delegation on the group for resilience
+  filterGroup.addEventListener('click', function(e) {
+    const btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    const filter = btn.getAttribute('data-filter');
+    if (!filter) return;
+    setActiveBtn(btn);
+    applyFilter(filter);
   });
 
   // Keyboard: arrow keys move focus within filter group
-  if (filterGroup) {
-    filterGroup.addEventListener('keydown', (e) => {
-      const focusedBtn = document.activeElement;
-      if (!filterBtns.includes(focusedBtn)) return;
+  filterGroup.addEventListener('keydown', function(e) {
+    const focusedBtn = document.activeElement;
+    if (!filterBtns.includes(focusedBtn)) return;
 
-      const idx = filterBtns.indexOf(focusedBtn);
+    const idx = filterBtns.indexOf(focusedBtn);
 
-      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-        e.preventDefault();
-        const next = filterBtns[(idx + 1) % filterBtns.length];
-        next.focus();
-      }
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      filterBtns[(idx + 1) % filterBtns.length].focus();
+    }
 
-      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-        e.preventDefault();
-        const prev = filterBtns[(idx - 1 + filterBtns.length) % filterBtns.length];
-        prev.focus();
-      }
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      filterBtns[(idx - 1 + filterBtns.length) % filterBtns.length].focus();
+    }
 
-      if (e.key === 'Home') {
-        e.preventDefault();
-        filterBtns[0].focus();
-      }
+    if (e.key === 'Home') {
+      e.preventDefault();
+      filterBtns[0].focus();
+    }
 
-      if (e.key === 'End') {
-        e.preventDefault();
-        filterBtns[filterBtns.length - 1].focus();
-      }
-    });
-  }
+    if (e.key === 'End') {
+      e.preventDefault();
+      filterBtns[filterBtns.length - 1].focus();
+    }
+  });
 }
 
 
