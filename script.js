@@ -264,31 +264,53 @@ function initSkillFilter() {
     applyFilter(filter);
   });
 
-  // Keyboard: arrow keys move focus within filter group
+  // Keyboard: Enter/Space activate; arrow keys move focus and activate
   filterGroup.addEventListener('keydown', function(e) {
     const focusedBtn = document.activeElement;
     if (!filterBtns.includes(focusedBtn)) return;
 
     const idx = filterBtns.indexOf(focusedBtn);
+    let targetBtn = null;
 
     if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
       e.preventDefault();
-      filterBtns[(idx + 1) % filterBtns.length].focus();
+      targetBtn = filterBtns[(idx + 1) % filterBtns.length];
     }
 
     if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
       e.preventDefault();
-      filterBtns[(idx - 1 + filterBtns.length) % filterBtns.length].focus();
+      targetBtn = filterBtns[(idx - 1 + filterBtns.length) % filterBtns.length];
     }
 
     if (e.key === 'Home') {
       e.preventDefault();
-      filterBtns[0].focus();
+      targetBtn = filterBtns[0];
     }
 
     if (e.key === 'End') {
       e.preventDefault();
-      filterBtns[filterBtns.length - 1].focus();
+      targetBtn = filterBtns[filterBtns.length - 1];
+    }
+
+    if (targetBtn) {
+      targetBtn.focus();
+      const filter = targetBtn.getAttribute('data-filter');
+      if (filter) {
+        setActiveBtn(targetBtn);
+        applyFilter(filter);
+      }
+      return;
+    }
+
+    // Enter and Space explicitly trigger the focused button
+    // (<button> fires click natively on these keys, but be explicit for reliability)
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      const filter = focusedBtn.getAttribute('data-filter');
+      if (filter) {
+        setActiveBtn(focusedBtn);
+        applyFilter(filter);
+      }
     }
   });
 }
