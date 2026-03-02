@@ -69,7 +69,7 @@
                   type="button"
                   data-email="sampittman12@icloud.com"
                   aria-label="Copy email address sampittman12@icloud.com to clipboard"
-                >sampittman12@icloud.com
+                ><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b5c6d4d8c5dcc1c1d8d4db8487f5dcd6d9dac0d19bd6dad8">[email&#160;protected]</a>
                   <span class="copy-hint"<span class="copy-hint" aria-hidden="true">click to copy</span>
                   <span class="copy-confirm" id="copy-confirm" aria-live="polite" hidden>Copied!</span>
                 </button>
@@ -116,30 +116,21 @@
       </section>
 
 
-      <!-- ============================================================
-           SECTION 02 — SKILLS (filterable)
-      ============================================================ -->
+      <!-- SKILLS SECTION -->
       <section id="skills" class="section section--skills" aria-labelledby="skills-heading">
         <div class="container">
           <span class="section-label" aria-hidden="true">// 02</span>
           <h2 id="skills-heading" class="section-heading">Skills</h2>
 
-          <!-- Filter controls -->
-          <div class="skills-filters" role="group" aria-label="Filter skills by category">
-            <button
-              class="filter-btn filter-btn--active"
-              type="button"
-              data-filter="all"
-              aria-pressed="true"
-            >All</button>
-            <button class="filter-btn" type="button" data-filter="technical"  aria-pressed="false">Technical / IT</button>
-            <button class="filter-btn" type="button" data-filter="data"       aria-pressed="false">Data &amp; Analytics</button>
-            <button class="filter-btn" type="button" data-filter="web"        aria-pressed="false">Web / Design / Tools</button>
-            <button class="filter-btn" type="button" data-filter="writing"    aria-pressed="false">Writing &amp; Communication</button>
+          <div id="skills-filters" class="skills-filters" role="group" aria-label="Filter skills by category">
+            <button type="button" data-filter="all"       class="filter-btn filter-btn--active" aria-pressed="true">All</button>
+            <button type="button" data-filter="technical" class="filter-btn" aria-pressed="false">Technical / IT</button>
+            <button type="button" data-filter="data"      class="filter-btn" aria-pressed="false">Data &amp; Analytics</button>
+            <button type="button" data-filter="web"       class="filter-btn" aria-pressed="false">Web / Design / Tools</button>
+            <button type="button" data-filter="writing"   class="filter-btn" aria-pressed="false">Writing &amp; Communication</button>
           </div>
 
-          <!-- Skill list -->
-          <ul class="skills-list" id="skills-list" role="list" aria-live="polite" aria-label="Skills">
+          <ul id="skills-list" class="skills-list" aria-live="polite" aria-label="Skills">
 
             <li class="skill-item" data-category="technical">
               <span class="skill-name">Hardware &amp; software troubleshooting</span>
@@ -235,8 +226,7 @@
 
           </ul>
 
-          <!-- Empty state shown by JS when no results match -->
-          <p class="skills-empty" id="skills-empty" hidden aria-live="polite">
+          <p id="skills-empty" class="skills-empty" aria-live="polite" style="display:none">
             No skills found for this filter.
           </p>
 
@@ -497,7 +487,4 @@
 
     <!-- ============================================================
          SITE FOOTER
-    ============================================================ -->
-    <footer class="site-footer" role="contentinfo">
-      <div class="container">
-        <p class="site-f
+    =============================================

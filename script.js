@@ -210,54 +210,52 @@ function initMobileNav() {
    4. SKILL FILTER
    ============================================================ */
 function initSkillFilter() {
-  var filterGroup = document.querySelector('.skills-filters');
-  var skillsList  = document.querySelector('#skills-list');
-  var emptyState  = document.querySelector('#skills-empty');
+  (function () {
+    var filterGroup = document.getElementById('skills-filters');
+    var skillsList  = document.getElementById('skills-list');
+    var emptyMsg    = document.getElementById('skills-empty');
 
-  if (!filterGroup || !skillsList) return;
+    if (!filterGroup || !skillsList) return;
 
-  var filterBtns = filterGroup.querySelectorAll('[data-filter]');
-  var skillItems = skillsList.querySelectorAll('[data-category]');
+    var buttons = filterGroup.querySelectorAll('button[data-filter]');
+    var items   = skillsList.querySelectorAll('li[data-category]');
 
-  if (!filterBtns.length || !skillItems.length) return;
-
-  function applyFilter(value) {
-    var visible = 0;
-    for (var i = 0; i < skillItems.length; i++) {
-      var item = skillItems[i];
-      var match = value === 'all' || item.getAttribute('data-category') === value;
-      if (match) {
-        item.style.display = '';
-        visible++;
-      } else {
-        item.style.display = 'none';
+    function applyFilter(activeValue) {
+      var visible = 0;
+      for (var i = 0; i < items.length; i++) {
+        if (activeValue === 'all' || items[i].getAttribute('data-category') === activeValue) {
+          items[i].style.display = '';
+          visible++;
+        } else {
+          items[i].style.display = 'none';
+        }
+      }
+      if (emptyMsg) {
+        emptyMsg.style.display = visible === 0 ? '' : 'none';
       }
     }
-    if (emptyState) {
-      emptyState.hidden = visible > 0;
-    }
-  }
 
-  function setActive(activeBtn) {
-    for (var i = 0; i < filterBtns.length; i++) {
-      var btn = filterBtns[i];
-      var active = btn === activeBtn;
-      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
-      if (active) {
-        btn.classList.add('filter-btn--active');
-      } else {
-        btn.classList.remove('filter-btn--active');
+    function setActiveButton(activeBtn) {
+      for (var i = 0; i < buttons.length; i++) {
+        var isActive = buttons[i] === activeBtn;
+        buttons[i].setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        if (isActive) {
+          buttons[i].classList.add('filter-btn--active');
+        } else {
+          buttons[i].classList.remove('filter-btn--active');
+        }
       }
     }
-  }
 
-  for (var i = 0; i < filterBtns.length; i++) {
-    filterBtns[i].addEventListener('click', function() {
-      var value = this.getAttribute('data-filter');
-      setActive(this);
-      applyFilter(value);
-    });
-  }
+    for (var i = 0; i < buttons.length; i++) {
+      (function (btn) {
+        btn.addEventListener('click', function () {
+          setActiveButton(btn);
+          applyFilter(btn.getAttribute('data-filter'));
+        });
+      })(buttons[i]);
+    }
+  })();
 }
 
 
