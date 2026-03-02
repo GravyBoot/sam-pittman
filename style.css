@@ -527,92 +527,10 @@ button {
 
 
 /* ============================================================
-   SECTION 02 — SKILLS
+   SECTION 02 — SKILLS (legacy rules removed)
+   Original grid/list styling is obsolete; replaced by newer
+   .skills-grid/.skill-card set farther down in the file.
    ============================================================ */
-.skills-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-  margin-bottom: var(--space-8);
-}
-
-.filter-btn {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  letter-spacing: 0.06em;
-  color: var(--color-ink-muted);
-  border: 1.5px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: var(--space-2) var(--space-4);
-  background-color: transparent;
-  transition:
-    color            var(--duration-fast) var(--ease),
-    border-color     var(--duration-fast) var(--ease),
-    background-color var(--duration-fast) var(--ease),
-    box-shadow       var(--duration-fast) var(--ease);
-}
-
-.filter-btn:hover {
-  color: var(--color-ink);
-  border-color: var(--color-ink-secondary);
-  background-color: var(--color-bg);
-}
-
-/* Active / pressed state — shape + color change, not just color */
-.filter-btn--active,
-.filter-btn[aria-pressed="true"] {
-  color: var(--color-surface);
-  background-color: var(--color-ink);
-  border-color: var(--color-ink);
-  box-shadow: var(--shadow-sm);
-}
-
-.filter-btn--active:hover,
-.filter-btn[aria-pressed="true"]:hover {
-  background-color: var(--color-accent);
-  border-color: var(--color-accent);
-}
-
-.skills-list {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-2);
-}
-
-@media (min-width: 480px) {
-  .skills-list {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.skill-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-4);
-  padding: var(--space-3) var(--space-4);
-  background-color: var(--color-bg-card);
-  border: 1px solid var(--color-border-light);
-  border-radius: var(--radius-md);
-  /* Shadow on card implies it can be interacted with / filtered */
-  box-shadow: var(--shadow-sm);
-  transition:
-    opacity   var(--duration-base) var(--ease),
-    transform var(--duration-base) var(--ease),
-    box-shadow var(--duration-fast) var(--ease);
-}
-
-.skill-item:hover {
-  box-shadow: var(--shadow-md);
-}
-
-/* JS adds this class when filtered out */
-.skill-item[data-hidden="true"] {
-  display: none;
-}
-
-.skill-name {
-  font-size: var(--text-sm);
   color: var(--color-ink);
   font-weight: 600;
 }
