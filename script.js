@@ -210,73 +210,66 @@ function initMobileNav() {
    4. SKILL FILTER
    ============================================================ */
 function initSkillFilter() {
-  (function () {
-    (function () {
-      var filterGroup = document.getElementById('skills-filters');
-      var skillsList  = document.getElementById('skills-list');
-      var emptyMsg    = document.getElementById('skills-empty');
+  var filterGroup = document.getElementById('skills-filters');
+  var skillsList  = document.getElementById('skills-list');
+  var emptyMsg    = document.getElementById('skills-empty');
 
-      if (!filterGroup || !skillsList) return;
+  if (!filterGroup || !skillsList) return;
 
-      var buttons = Array.prototype.slice.call(filterGroup.querySelectorAll('button[data-filter]'));
-      var items   = Array.prototype.slice.call(skillsList.querySelectorAll('li[data-category]'));
+  var buttons = Array.prototype.slice.call(filterGroup.querySelectorAll('button[data-filter]'));
+  var items   = Array.prototype.slice.call(skillsList.querySelectorAll('li[data-category]'));
 
-      function getCategories(item) {
-        var raw = item.getAttribute('data-category') || '';
-        return raw.split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+  function parseCategories(item) {
+    var raw = item.getAttribute('data-category') || '';
+    return raw.split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+  }
+
+  function itemMatches(item, filterValue) {
+    if (filterValue === 'all') return true;
+    var cats = parseCategories(item);
+    return cats.indexOf(filterValue) !== -1;
+  }
+
+  function updateFilter(filterValue) {
+    var visibleCount = 0;
+    
+    for (var i = 0; i < items.length; i++) {
+      var shouldShow = itemMatches(items[i], filterValue);
+      items[i].style.display = shouldShow ? '' : 'none';
+      if (shouldShow) visibleCount++;
+    }
+
+    if (emptyMsg) {
+      emptyMsg.style.display = visibleCount === 0 ? '' : 'none';
+    }
+  }
+
+  function setActiveButton(activeBtn) {
+    for (var i = 0; i < buttons.length; i++) {
+      var isActive = buttons[i] === activeBtn;
+      buttons[i].setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      if (isActive) {
+        buttons[i].classList.add('filter-btn--active');
+      } else {
+        buttons[i].classList.remove('filter-btn--active');
       }
+    }
+  }
 
-      function matches(item, value) {
-        if (value === 'all') return true;
-        var cats = getCategories(item);
-        return cats.indexOf(value) !== -1;
-      }
+  for (var i = 0; i < buttons.length; i++) {
+    (function (btn) {
+      btn.addEventListener('click', function () {
+        setActiveButton(btn);
+        updateFilter(btn.getAttribute('data-filter'));
+      });
+    })(buttons[i]);
+  }
 
-      function applyFilter(activeValue) {
-        var visible = 0;
-        for (var i = 0; i < items.length; i++) {
-          if (matches(items[i], activeValue)) {
-            items[i].style.display = '';
-            visible++;
-          } else {
-            items[i].style.display = 'none';
-          }
-        }
-        if (emptyMsg) {
-          emptyMsg.style.display = visible === 0 ? '' : 'none';
-        }
-      }
-
-      function setActiveButton(activeBtn) {
-        for (var i = 0; i < buttons.length; i++) {
-          var isActive = buttons[i] === activeBtn;
-          buttons[i].setAttribute('aria-pressed', isActive ? 'true' : 'false');
-          if (isActive) {
-            buttons[i].classList.add('filter-btn--active');
-          } else {
-            buttons[i].classList.remove('filter-btn--active');
-          }
-        }
-      }
-
-      for (var i = 0; i < buttons.length; i++) {
-        (function (btn) {
-          btn.addEventListener('click', function () {
-            setActiveButton(btn);
-            applyFilter(btn.getAttribute('data-filter'));
-          });
-        })(buttons[i]);
-      }
-
-      // Initialise: use any button already marked pressed, else use `all`, else first
-      var initialBtn = buttons.find(function (b) { return b.getAttribute('aria-pressed') === 'true'; }) ||
-                       buttons.find(function (b) { return b.getAttribute('data-filter') === 'all'; }) ||
-                       buttons[0];
-      if (initialBtn) {
-        setActiveButton(initialBtn);
-        applyFilter(initialBtn.getAttribute('data-filter') || 'all');
-      }
-    })();
+  // Initialize with first button
+  if (buttons.length > 0) {
+    setActiveButton(buttons[0]);
+    updateFilter(buttons[0].getAttribute('data-filter'));
+  }
 }
 
 
