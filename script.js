@@ -208,111 +208,56 @@ function initMobileNav() {
 
 /* ============================================================
    4. SKILL FILTER
-   Filters skill items by data-category. Manages:
-   - aria-pressed on filter buttons
-   - data-hidden attribute on skill items
-   - empty state visibility
-   - keyboard: arrow key navigation within the filter group
    ============================================================ */
 function initSkillFilter() {
-  const filterGroup = document.querySelector('.skills-filters');
-  const skillsList  = document.querySelector('#skills-list');
-  const emptyState  = document.querySelector('#skills-empty');
+  var filterGroup = document.querySelector('.skills-filters');
+  var skillsList  = document.querySelector('#skills-list');
+  var emptyState  = document.querySelector('#skills-empty');
 
   if (!filterGroup || !skillsList) return;
 
-  const filterBtns = Array.from(filterGroup.querySelectorAll('.filter-btn'));
-  const skillItems = Array.from(skillsList.querySelectorAll('.skill-item'));
+  var filterBtns = filterGroup.querySelectorAll('[data-filter]');
+  var skillItems = skillsList.querySelectorAll('[data-category]');
 
   if (!filterBtns.length || !skillItems.length) return;
 
-  function applyFilter(activeFilter) {
-    let visibleCount = 0;
-
-    skillItems.forEach(function(item) {
-      const category = item.getAttribute('data-category');
-      const matches  = activeFilter === 'all' || category === activeFilter;
-
-      if (matches) {
-        item.removeAttribute('data-hidden');
-        visibleCount++;
+  function applyFilter(value) {
+    var visible = 0;
+    for (var i = 0; i < skillItems.length; i++) {
+      var item = skillItems[i];
+      var match = value === 'all' || item.getAttribute('data-category') === value;
+      if (match) {
+        item.style.display = '';
+        visible++;
       } else {
-        item.setAttribute('data-hidden', 'true');
+        item.style.display = 'none';
       }
-    });
-
+    }
     if (emptyState) {
-      emptyState.hidden = visibleCount > 0;
+      emptyState.hidden = visible > 0;
     }
   }
 
-  function setActiveBtn(activeBtn) {
-    filterBtns.forEach(function(btn) {
-      const isActive = btn === activeBtn;
-      btn.setAttribute('aria-pressed', String(isActive));
-      btn.classList.toggle('filter-btn--active', isActive);
+  function setActive(activeBtn) {
+    for (var i = 0; i < filterBtns.length; i++) {
+      var btn = filterBtns[i];
+      var active = btn === activeBtn;
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+      if (active) {
+        btn.classList.add('filter-btn--active');
+      } else {
+        btn.classList.remove('filter-btn--active');
+      }
+    }
+  }
+
+  for (var i = 0; i < filterBtns.length; i++) {
+    filterBtns[i].addEventListener('click', function() {
+      var value = this.getAttribute('data-filter');
+      setActive(this);
+      applyFilter(value);
     });
   }
-
-  // Use event delegation on the group for resilience
-  filterGroup.addEventListener('click', function(e) {
-    const btn = e.target.closest('.filter-btn');
-    if (!btn) return;
-    const filter = btn.getAttribute('data-filter');
-    if (!filter) return;
-    setActiveBtn(btn);
-    applyFilter(filter);
-  });
-
-  // Keyboard: Enter/Space activate; arrow keys move focus and activate
-  filterGroup.addEventListener('keydown', function(e) {
-    const focusedBtn = document.activeElement;
-    if (!filterBtns.includes(focusedBtn)) return;
-
-    const idx = filterBtns.indexOf(focusedBtn);
-    let targetBtn = null;
-
-    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-      e.preventDefault();
-      targetBtn = filterBtns[(idx + 1) % filterBtns.length];
-    }
-
-    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-      e.preventDefault();
-      targetBtn = filterBtns[(idx - 1 + filterBtns.length) % filterBtns.length];
-    }
-
-    if (e.key === 'Home') {
-      e.preventDefault();
-      targetBtn = filterBtns[0];
-    }
-
-    if (e.key === 'End') {
-      e.preventDefault();
-      targetBtn = filterBtns[filterBtns.length - 1];
-    }
-
-    if (targetBtn) {
-      targetBtn.focus();
-      const filter = targetBtn.getAttribute('data-filter');
-      if (filter) {
-        setActiveBtn(targetBtn);
-        applyFilter(filter);
-      }
-      return;
-    }
-
-    // Enter and Space explicitly trigger the focused button
-    // (<button> fires click natively on these keys, but be explicit for reliability)
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      const filter = focusedBtn.getAttribute('data-filter');
-      if (filter) {
-        setActiveBtn(focusedBtn);
-        applyFilter(filter);
-      }
-    }
-  });
 }
 
 
