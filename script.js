@@ -208,68 +208,11 @@ function initMobileNav() {
 
 /* ============================================================
    4. SKILL FILTER
+   TODO: Add new skills functionality here
    ============================================================ */
 function initSkillFilter() {
-  var filterGroup = document.getElementById('skills-filters');
-  var skillsList  = document.getElementById('skills-list');
-  var emptyMsg    = document.getElementById('skills-empty');
-
-  if (!filterGroup || !skillsList) return;
-
-  var buttons = Array.prototype.slice.call(filterGroup.querySelectorAll('button[data-filter]'));
-  var items   = Array.prototype.slice.call(skillsList.querySelectorAll('li[data-category]'));
-
-  function parseCategories(item) {
-    var raw = item.getAttribute('data-category') || '';
-    return raw.split(',').map(function (s) { return s.trim(); }).filter(Boolean);
-  }
-
-  function itemMatches(item, filterValue) {
-    if (filterValue === 'all') return true;
-    var cats = parseCategories(item);
-    return cats.indexOf(filterValue) !== -1;
-  }
-
-  function updateFilter(filterValue) {
-    var visibleCount = 0;
-    
-    for (var i = 0; i < items.length; i++) {
-      var shouldShow = itemMatches(items[i], filterValue);
-      items[i].style.display = shouldShow ? '' : 'none';
-      if (shouldShow) visibleCount++;
-    }
-
-    if (emptyMsg) {
-      emptyMsg.style.display = visibleCount === 0 ? '' : 'none';
-    }
-  }
-
-  function setActiveButton(activeBtn) {
-    for (var i = 0; i < buttons.length; i++) {
-      var isActive = buttons[i] === activeBtn;
-      buttons[i].setAttribute('aria-pressed', isActive ? 'true' : 'false');
-      if (isActive) {
-        buttons[i].classList.add('filter-btn--active');
-      } else {
-        buttons[i].classList.remove('filter-btn--active');
-      }
-    }
-  }
-
-  for (var i = 0; i < buttons.length; i++) {
-    (function (btn) {
-      btn.addEventListener('click', function () {
-        setActiveButton(btn);
-        updateFilter(btn.getAttribute('data-filter'));
-      });
-    })(buttons[i]);
-  }
-
-  // Initialize with first button
-  if (buttons.length > 0) {
-    setActiveButton(buttons[0]);
-    updateFilter(buttons[0].getAttribute('data-filter'));
-  }
+  // Placeholder for new skills code
+  // When skills HTML is ready, add the initialization logic here
 }
 
 
